@@ -15,4 +15,5 @@ galaxy_info:
   - cloud
   - ec2
   - syslogd
-dependencies: ['JoergFiedler.freebsd-jail-host']
+dependencies:
+- { role: 'JoergFiedler.freebsd-jail-host', tags: ['host'] }

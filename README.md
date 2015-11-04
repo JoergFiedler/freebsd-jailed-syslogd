@@ -58,7 +58,7 @@ This feature is only active, if the variable `use_ssmtp` is set to any value.
 Dependencies
 ------------
 
-- { role: JoergFiedler.freebsd-jail-host, tags: ['host'] }
+- [JoergFiedler.freebsd-jail-host](https://galaxy.ansible.com/detail#/role/5827)
 
 Example Playbook
 ----------------
