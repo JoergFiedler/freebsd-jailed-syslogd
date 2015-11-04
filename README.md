@@ -15,31 +15,31 @@ You will find a sample project which uses this role [here](https://github.com/Jo
 Role Variables
 --------------
 
-##### js_jail_name
+##### jail_name
 
-The name for the jail. Local part of the hostname. Default: `''`.
+The name for the jail. Local part of the hostname. Default: `'{{ jail_net_ip }}'`.
 
-##### js_jail_domain
+##### jail_domain
 
 The domain this jail belongs to. Domain part of the hostname. Default: `'darkcity'`.
 
-##### js_jail_net_if
+##### jail_net_if
 
 The interface to which the jail's ip address is added. Default: `'lo0'`.
 
-##### js_jail_net_ip
+##### jail_net_ip
 
 The jail's ip address. Default: `''`.
 
-##### js_jail_net_net
+##### jail_net_net
 
-The network mask the jail accepts syslog messages from. Default: `'{{ js_jail_net_ip }}/24'`.
+The network mask the jail accepts syslog messages from. Default: `'{{ jail_net_ip }}/24'`.
 
-##### js_ioc_jails_dir
+##### host_ioc_jails_dir
 
 The directory iocage creates jails in. Default: `'/iocage/jails'`.
 
-##### js_ssmtp_forward_address
+##### ssmtp_forward_address
 
 System mails are forwarded to this address. See [ssmtp man page](https://www.freebsd.org/cgi/man.cgi?query=ssmtp&apropos=0&sektion=0&manpath=FreeBSD+10.2-RELEASE+and+Ports&arch=default&format=html) for further information.
 
@@ -47,7 +47,7 @@ Default: `'freebsd-ansible-demo@maildrop.cc'`.
 
 This feature is only active, if the variable `use_ssmtp` is set to any value.
 
-##### js_ssmtp_forward_mailhub
+##### ssmtp_forward_mailhub
 
 System mails are forwarded using this mail relay. See [ssmtp man page](https://www.freebsd.org/cgi/man.cgi?query=ssmtp&apropos=0&sektion=0&manpath=FreeBSD+10.2-RELEASE+and+Ports&arch=default&format=html) for further information.
 
@@ -58,7 +58,7 @@ This feature is only active, if the variable `use_ssmtp` is set to any value.
 Dependencies
 ------------
 
-- JoergFiedler.freebsd-jail-host
+- { role: JoergFiedler.freebsd-jail-host, tags: ['host'] }
 
 Example Playbook
 ----------------
@@ -66,8 +66,8 @@ Example Playbook
     - { role: JoergFiedler.freebsd-jailed-syslogd,
         tags: ['syslogd'],
         ssmtp: true,
-        js_jail_name: 'syslogd',
-        js_jail_net_ip: '10.1.0.2' }
+        jail_name: 'syslogd',
+        jail_net_ip: '10.1.0.2' }
 
 License
 -------
