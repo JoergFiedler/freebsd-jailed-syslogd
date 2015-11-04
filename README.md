@@ -67,7 +67,7 @@ Example Playbook
         tags: ['syslogd'],
         ssmtp: true,
         js_jail_name: 'syslogd',
-        js_jail_net_ip: '10.1.0.2' }¬
+        js_jail_net_ip: '10.1.0.2' }
 
 License
 -------
