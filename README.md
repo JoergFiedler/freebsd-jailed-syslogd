@@ -63,11 +63,11 @@ Dependencies
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+    - { role: JoergFiedler.freebsd-jailed-syslogd,
+        tags: ['syslogd'],
+        ssmtp: true,
+        js_jail_name: 'syslogd',
+        js_jail_net_ip: '10.1.0.2' }¬
 
 License
 -------
