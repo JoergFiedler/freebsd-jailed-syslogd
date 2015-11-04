@@ -1,0 +1,14 @@
+---
+# handlers file for jailed_syslogd
+- name: Reload pf
+  service: name=pf state=reloaded
+
+- name: Reload {{ js_jail_name }} s syslogd
+  command: /usr/local/sbin/iocage exec \
+           {{ jail_uuid.stdout }} service syslogd reload
+  when: not jail_created|changed
+
+- name: Reload {{ js_jail_name }} s sshd
+  command: /usr/local/sbin/iocage exec \
+           {{ jail_uuid.stdout }} service sshd reload
+  when: not jail_created|changed

@@ -1,0 +1,7 @@
+#
+# /etc/ssmtp.conf -- a config file for sSMTP sendmail.
+#
+
+root={{ js_ssmtp_forward_address }}
+mailhub={{ js_ssmtp_forward_mailhub }}
+hostname={{ js_jail_hostname }}

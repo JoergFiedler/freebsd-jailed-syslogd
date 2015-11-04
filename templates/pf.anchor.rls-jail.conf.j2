@@ -1,0 +1,5 @@
+# allow syslog UDP packets
+pass log on {{ js_jail_net_if }} proto udp \
+  from {{ js_jail_net_net }} \
+  to {{ js_jail_net_ip }} port 514 \
+  keep state label "syslod"

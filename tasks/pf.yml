@@ -1,0 +1,25 @@
+---
+- name: {{ js_jail_hostname }} | Copy  pf configuration (rls rules)
+  template:
+    src: 'pf.anchor.rls-jail.conf.j2'
+    dest: /etc/pf.anchor.rls-jail.{{ js_jail_name }}.conf
+  notify:
+    - Reload pf
+
+- name: {{ js_jail_hostname }} | Add pf configuration to anchor.rls-jail conf
+  lineinfile:
+    dest: /etc/pf.anchor.rls-jail.conf
+    state: present
+    line: 'include \"/etc/pf.anchor.rls-jail.{{ js_jail_name }}.conf\"'
+  notify:
+    - Reload pf
+
+- name: {{ js_jail_hostname }} | Add to allowed NAT hosts
+  lineinfile:
+    dest: /etc/pf.table.nat-jails
+    state: present
+    insertbefore: EOF
+    line: '{{ js_jail_net_ip }}'
+  notify:
+    - Reload pf
+
