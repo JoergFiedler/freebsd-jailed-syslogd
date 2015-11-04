@@ -1,5 +1,8 @@
 ---
 # handlers file for jailed_syslogd
+- name: Start iocage
+  command: service iocage start
+
 - name: Reload pf
   service: name=pf state=reloaded
 
