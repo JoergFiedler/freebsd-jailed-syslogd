@@ -15,5 +15,4 @@ galaxy_info:
   - cloud
   - ec2
   - syslogd
-  - ssmtp
 dependencies: ['JoergFiedler.freebsd-jail-host']
