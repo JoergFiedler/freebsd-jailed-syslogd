@@ -5,4 +5,4 @@
  - include: syslogd.yml
  - include: sshd.yml
  - include: ssmtp.yml
-   when: '{{ ssmtp|defined}}'
+   when: ssmtp is defined
