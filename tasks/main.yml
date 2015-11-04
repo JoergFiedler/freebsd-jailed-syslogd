@@ -5,4 +5,4 @@
  - include: syslogd.yml
  - include: sshd.yml
  - include: ssmtp.yml
-   when: ssmtp is defined
+   when: use_ssmtp is defined

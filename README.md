@@ -3,7 +3,7 @@ freebsd-jailed-syslogd
 
 This role provides a jailed syslogd server. Nothing more.
 
-To see this role in a wider perspective, have a look at [this project of mine](https://github.com/JoergFiedler/freebsd-ansible-demo).
+To see this role in action, have a look at [this project of mine](https://github.com/JoergFiedler/freebsd-ansible-demo).
 
 Requirements
 ------------
@@ -45,7 +45,7 @@ System mails are forwarded to this address. See [ssmtp man page](https://www.fre
 
 Default: `'freebsd-ansible-demo@maildrop.cc'`.
 
-This behaviour is only active, if the variable 'ssmtp' is set to any value.
+This feature is only active, if the variable `use_ssmtp` is set to any value.
 
 ##### js_ssmtp_forward_mailhub
 
@@ -53,7 +53,7 @@ System mails are forwarded using this mail relay. See [ssmtp man page](https://w
 
 Default: `'mail.maildrop.cc'`.
 
-This behaviour is only active, if the variable 'ssmtp' is set to any value.
+This feature is only active, if the variable `use_ssmtp` is set to any value.
 
 Dependencies
 ------------
