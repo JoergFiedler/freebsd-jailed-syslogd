@@ -17,33 +17,33 @@ Role Variables
 
 ##### js_jail_name
 
-The name for the jail. Local part of the hostname. Default: ''.
+The name for the jail. Local part of the hostname. Default: `''`.
 
 ##### js_jail_domain
 
-The domain this jail belongs to. Domain part of the hostname. Default: 'darkcity'.
+The domain this jail belongs to. Domain part of the hostname. Default: `'darkcity'`.
 
 ##### js_jail_net_if
 
-The interface to which the jail's ip address is added. Default: 'lo0'.
+The interface to which the jail's ip address is added. Default: `'lo0'`.
 
 ##### js_jail_net_ip
 
-The jail's ip address. Default: '{{ js_jail_net_ip }}/24'.
+The jail's ip address. Default: `''`.
 
-##### js_jail_net_int_network
+##### js_jail_net_net
 
-The network mask the jail accepts syslog messages from. Default: ''.
+The network mask the jail accepts syslog messages from. Default: `'{{ js_jail_net_ip }}/24'`.
 
 ##### js_ioc_jails_dir
 
-The directory iocage creates jails in. Default: '/iocage/jails'.
+The directory iocage creates jails in. Default: `'/iocage/jails'`.
 
 ##### js_ssmtp_forward_address
 
 System mails are forwarded to this address. See [ssmtp man page](https://www.freebsd.org/cgi/man.cgi?query=ssmtp&apropos=0&sektion=0&manpath=FreeBSD+10.2-RELEASE+and+Ports&arch=default&format=html) for further information.
 
-Default: 'freebsd-ansible-demo@maildrop.cc'.
+Default: `'freebsd-ansible-demo@maildrop.cc'`.
 
 This behaviour is only active, if the variable 'ssmtp' is set to any value.
 
@@ -51,7 +51,7 @@ This behaviour is only active, if the variable 'ssmtp' is set to any value.
 
 System mails are forwarded using this mail relay. See [ssmtp man page](https://www.freebsd.org/cgi/man.cgi?query=ssmtp&apropos=0&sektion=0&manpath=FreeBSD+10.2-RELEASE+and+Ports&arch=default&format=html) for further information.
 
-Default: 'mail.maildrop.cc'.
+Default: `'mail.maildrop.cc'`.
 
 This behaviour is only active, if the variable 'ssmtp' is set to any value.
 
