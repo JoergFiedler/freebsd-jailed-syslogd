@@ -1,5 +1,5 @@
 ---
-- name: {{ js_jail_hostname }} | Add syslogd flags to rc.conf
+- name: '{{ js_jail_hostname }} | Add syslogd flags to rc.conf'
   lineinfile:
     dest: '{{ jail_home.stdout }}/etc/rc.conf'
     state: present

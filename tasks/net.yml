@@ -1,11 +1,11 @@
 ---
-- name: {{ js_jail_hostname }} | Add network config
+- name: '{{ js_jail_hostname }} | Add network config'
   lineinfile:
     dest: /etc/rc.conf
     line: "ifconfig_{{ js_jail_net_if }}_alias{{ js_jail_net_ip | ipaddr('int') }}=\"inet {{ js_jail_net_ip }} netmask 255.255.255.255\""
   register: add_ip
 
-- name: {{ js_jail_hostname }} | Activate network config
+- name: '{{ js_jail_hostname }} | Activate network config'
   command: ifconfig {{ js_jail_net_if }} inet alias {{ js_jail_net_ip }} netmask 255.255.255.255
   when: add_ip.changed
 

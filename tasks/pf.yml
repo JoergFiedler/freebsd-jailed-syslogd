@@ -1,12 +1,12 @@
 ---
-- name: {{ js_jail_hostname }} | Copy  pf configuration (rls rules)
+- name: '{{ js_jail_hostname }} | Copy  pf configuration (rls rules)'
   template:
     src: 'pf.anchor.rls-jail.conf.j2'
     dest: /etc/pf.anchor.rls-jail.{{ js_jail_name }}.conf
   notify:
     - Reload pf
 
-- name: {{ js_jail_hostname }} | Add pf configuration to anchor.rls-jail conf
+- name: '{{ js_jail_hostname }} | Add pf configuration to anchor.rls-jail conf'
   lineinfile:
     dest: /etc/pf.anchor.rls-jail.conf
     state: present
@@ -14,7 +14,7 @@
   notify:
     - Reload pf
 
-- name: {{ js_jail_hostname }} | Add to allowed NAT hosts
+- name: '{{ js_jail_hostname }} | Add to allowed NAT hosts'
   lineinfile:
     dest: /etc/pf.table.nat-jails
     state: present

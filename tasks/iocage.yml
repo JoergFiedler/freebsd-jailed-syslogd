@@ -1,29 +1,29 @@
 ---
-- name: {{ js_jail_hostname }} | Check if jail already exists
+- name: '{{ js_jail_hostname }} | Check if jail already exists'
   shell: /usr/local/sbin/iocage show ip4_addr | grep {{ js_jail_net_ip }} | cut -d ' ' -f 1
   changed_when: false
   register: jail_uuid
 
-- name: {{ js_jail_hostname }} | Create base jail
+- name: '{{ js_jail_hostname }} | Create base jail'
   command: /usr/local/sbin/iocage create -b tag={{ js_jail_name }} ip4_addr={{ js_jail_net_ip }}
   when: not jail_uuid.stdout
   register: jail_created
   notify:
     - Start iocage
 
-- name: {{ js_jail_hostname }} | Get UUID
+- name: '{{ js_jail_hostname }} | Get UUID'
   shell: /usr/local/sbin/iocage show ip4_addr | grep {{ js_jail_net_ip }} | cut -d ' ' -f 1
   changed_when: false
   register: jail_uuid
 
-- name: {{ js_jail_name }} | Set jail properties
+- name: '{{ js_jail_name }} | Set jail properties'
   command: /usr/local/sbin/iocage set {{ item }} {{ jail_uuid.stdout }}
   with_items:
     - 'boot=on'
     - 'hostname={{ jail_hostname }}'
   when: jail_created|changed
 
-- name: {{ js_jail_name }} | Register home diretory
+- name: '{{ js_jail_name }} | Register home diretory'
   command: echo {{ js_ioc_jails_dir }}/{{ jail_uuid.stdout }}/root
   changed_when: false
   register: jail_home
