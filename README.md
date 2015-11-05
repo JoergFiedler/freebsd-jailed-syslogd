@@ -29,15 +29,11 @@ The interface to which the jail's ip address is added. Default: `'lo0'`.
 
 ##### jail_net_ip
 
-The jail's ip address. Default: `''`.
+The jail's ip address. No default value.
 
 ##### jail_net_net
 
 The network mask the jail accepts syslog messages from. Default: `'{{ jail_net_ip }}/24'`.
-
-##### host_ioc_jails_dir
-
-The directory iocage creates jails in. Default: `'/iocage/jails'`.
 
 ##### ssmtp_forward_address
 

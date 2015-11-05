@@ -2,6 +2,7 @@
 - name: Add network config
   lineinfile:
     dest: /etc/rc.conf
+    state: present
     line: "ifconfig_{{ jail_net_if }}_alias{{ jail_net_ip | ipaddr('int') }}=\"inet {{ jail_net_ip }} netmask 255.255.255.255\""
   register: add_ip
 
