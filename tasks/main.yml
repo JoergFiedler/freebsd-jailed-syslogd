@@ -1,8 +1,2 @@
 ---
- - include: iocage.yml
- - include: net.yml
  - include: pf.yml
- - include: syslogd.yml
- - include: sshd.yml
- - include: ssmtp.yml
-   when: use_ssmtp is defined
