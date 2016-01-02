@@ -2,4 +2,4 @@
 pass log on {{ jail_net_if }} proto udp \
   from {{ jail_net_net }} \
   to {{ jail_net_ip }} port 514 \
-  keep state label "syslod"
+  keep state label "syslogd"
