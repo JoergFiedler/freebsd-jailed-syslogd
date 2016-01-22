@@ -35,22 +35,6 @@ The jail's ip address. No default value.
 
 The network mask the jail accepts syslog messages from. Default: `'{{ jail_net_ip }}/24'`.
 
-##### ssmtp_forward_address
-
-System mails are forwarded to this address. See [ssmtp man page](https://www.freebsd.org/cgi/man.cgi?query=ssmtp&apropos=0&sektion=0&manpath=FreeBSD+10.2-RELEASE+and+Ports&arch=default&format=html) for further information.
-
-Default: `'freebsd-ansible-demo@maildrop.cc'`.
-
-This feature is only active, if the variable `use_ssmtp` is set to any value.
-
-##### ssmtp_forward_mailhub
-
-System mails are forwarded using this mail relay. See [ssmtp man page](https://www.freebsd.org/cgi/man.cgi?query=ssmtp&apropos=0&sektion=0&manpath=FreeBSD+10.2-RELEASE+and+Ports&arch=default&format=html) for further information.
-
-Default: `'mail.maildrop.cc'`.
-
-This feature is only active, if the variable `use_ssmtp` is set to any value.
-
 Dependencies
 ------------
 
