@@ -1,3 +1,7 @@
 ---
-- include: pf.yml tags=syslogd
-- include: syslogd.yml tags=syslogd
+- include: pf.yml
+  tags:
+    - syslogd
+- include: syslogd.yml
+  tags:
+    - syslogd
