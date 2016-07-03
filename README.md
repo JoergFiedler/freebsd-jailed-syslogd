@@ -1,5 +1,5 @@
 freebsd-jailed-syslogd
-=========
+======================
 
 This role provides a jailed syslogd server. Nothing more.
 
