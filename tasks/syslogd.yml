@@ -15,3 +15,8 @@
 - name: Copy syslog.conf
   copy: src=syslog.conf
         dest={{ jail_home.stdout }}/etc/
+
+- name: Create all.log file
+  file:
+    path: '{{jail_home.stdout }}/var/log/all.log'
+    state: touch
