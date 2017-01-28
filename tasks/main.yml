@@ -1,7 +1,5 @@
 ---
 - include: pf.yml
-  tags:
-    - syslogd
+  tags: syslogd
 - include: syslogd.yml
-  tags:
-    - syslogd
+  tags: syslogd
