@@ -1,22 +1,25 @@
 ---
 - name: Add syslogd flags to rc.conf
   lineinfile:
+    backup: '{{ backup_old_files }}'
     dest: '{{ jail_home.stdout }}/etc/rc.conf'
     state: present
     regexp: '{{ item.regexp }}'
     line: '{{ item.line }}'
     insertbefore: EOF
-  with_items:
+  loop:
     - { regexp: '^syslogd_enable=', line: 'syslogd_enable="YES"' }
-    - { regexp: '^syslogd_flags=', line: 'syslogd_flags="-n -a {{ jail_net_net }}:* -b {{ jail_net_ip }}"' }
+    - { regexp: '^syslogd_flags=', line: 'syslogd_flags="-n -a {{ syslogd_net }}:* -b {{ jail_net_ip }}"' }
   notify:
     - Reload jail s syslogd
 
 - name: Copy syslog.conf
-  copy: src=syslog.conf
-        dest={{ jail_home.stdout }}/etc/
+  copy:
+    src: 'syslog.conf'
+    dest: '{{ jail_home.stdout }}/etc/'
 
 - name: Create all.log file
-  file:
-    path: '{{jail_home.stdout }}/var/log/all.log'
-    state: touch
+  copy:
+    dest: '{{ jail_home.stdout }}/var/log/all.log'
+    content: ''
+    force: no
