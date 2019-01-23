@@ -1,6 +1,7 @@
-[![Build Status](https://travis-ci.org/JoergFiedler/freebsd-jailed-syslogd.svg?branch=master)](https://travis-ci.org/JoergFiedler/freebsd-jailed-syslogd)
 freebsd-jailed-syslogd
 ======================
+
+[![Build Status](https://travis-ci.org/JoergFiedler/freebsd-jailed-syslogd.svg?branch=master)](https://travis-ci.org/JoergFiedler/freebsd-jailed-syslogd)
 
 This role provides a jailed syslogd server. Nothing more.
 
