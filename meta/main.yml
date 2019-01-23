@@ -3,18 +3,19 @@ galaxy_info:
   author: Joerg Fiedler
   description: Provides a jailed syslogd server.
   license: BSD
-  min_ansible_version: 2.7
+  min_ansible_version: 2.7.0
   platforms:
     - name: FreeBSD
       versions:
         - 11.2
   galaxy_tags:
-    - freebsd
-    - jail
-    - iocage
     - cloud
     - ec2
+    - freebsd
+    - iocage
+    - jail
     - syslogd
+    - system
 allow_duplicates: yes
 dependencies:
   - JoergFiedler.freebsd-jailed
