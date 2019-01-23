@@ -18,6 +18,9 @@ script:
 - vagrant ssh -c 'test $(sudo /usr/local/bin/iocage exec syslogd ps xa |grep syslogd |wc -l) -eq 1'
 after_script:
 - vagrant destroy -f
+notifications:
+  webhooks:
+    - https://galaxy.ansible.com/api/v1/notifications/
 env:
   global:
   - secure: fC0viq59JNX+uOHSW/t+QYgvHJRiSipim4vceFqhWUJADOSCGDboM4mn+SZ4m36j2solTo9JlfEf7fab4A2mGfcFipcwjrZs6k08o3MISnCqTmrBz9r8zRN0Pop5gRvFBEQ4e4oD5VBCVJHhyjNe5sd5p47Z1uOUVX+tG6VjTsM/7DARYmSXquJBb84ra0YxSZKSJjVlbIAimZbe1ZasekzZzgsnfbZH3PtGLSlTlOeKr6MeFkBBbcblmv+1Tjm5nOVQjwZ7Hs2RxL0oe0dritTwtg32F5Vl5HXKLtjRDBw3DfWQnC4TQzcLZLzte0OzmRbTM3H1PvLTDhiw5w8CYF7aRuMrdrSHv6889toRnChicbC0CWanFRQKdUA1nIGuUBEebFIjOx02kaxqW7Hx8aWNovsxkr7R+dnddsEcTycicZEKtcI8CjEUAU20CfRgN9Fuu3zpeVbYSccbSbH1kKl4pZGersHI9oiaMmQWyJ7c3za/ciJeZqWmlsfVLFY3tUCoxOXjJSEqXwrbtxdpgB8Cqs4dqrWH6kz6/sZONtrWjombpCxMlpR7HSF6Wxylj4i8wMA5b9z5LvOdhBJlNiQHwp17tycRZz0e17+xnQid/SqD5bFk4DnGn5F5oIJtmJ3qX0iktsW3BHCC47x3clax8sO6vdNNprAlCd0ehis=
