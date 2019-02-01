@@ -25,7 +25,7 @@ Dependencies
 Example Playbook
 ----------------
 
-    - include_role:
+    - import_role:
         name: 'JoergFiedler.freebsd-jailed-syslogd'
       vars:
         jail_net_ip: '10.1.0.10'
