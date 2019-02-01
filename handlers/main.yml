@@ -2,10 +2,10 @@
 # handlers file for jailed_syslogd
 - name: Reload jail s syslogd
   command: |
-    /usr/local/bin/iocage exec {{ jail_uuid.stdout }} service syslogd reload
+    /usr/local/bin/iocage exec {{ jail_name }} service syslogd reload
   when: not jail_created is changed
 
 - name: Reload jail s sshd
   command: |
-    /usr/local/bin/iocage exec {{ jail_uuid.stdout }} service sshd reload
+    /usr/local/bin/iocage exec {{ jail_name }} service sshd reload
   when: not jail_created is changed
