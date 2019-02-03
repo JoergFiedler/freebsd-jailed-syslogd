@@ -14,9 +14,12 @@
     - Reload jail s syslogd
 
 - name: Copy syslog.conf
-  copy:
-    src: 'syslog.conf'
-    dest: '{{ jail_home.stdout }}/etc/'
+  template:
+    backup: '{{ backup_old_files }}'
+    src: 'syslog.conf.j2'
+    dest: '{{ jail_home.stdout }}/etc/syslog.conf'
+  notify:
+    - Reload jail s syslogd
 
 - name: Create all.log file
   copy:
