@@ -1,26 +1,29 @@
+language: ruby
+rvm:
+  - 2.6
 dist: bionic
-language: python
 install:
-- wget https://releases.hashicorp.com/vagrant/2.2.2/vagrant_2.2.2_x86_64.deb
-- sudo dpkg -i vagrant_2.2.2_x86_64.deb
-- pip install -r .requirements.txt
+  - wget https://releases.hashicorp.com/vagrant/2.2.4/vagrant_2.2.4_x86_64.deb
+  - sudo dpkg -i vagrant_2.2.4_x86_64.deb
+  - wget https://github.com/bdwyertech/vagrant-aws/releases/download/v0.8.0-bdwyertech/vagrant-aws-0.8.0.gem
+  - vagrant plugin install vagrant-aws-0.8.0.gem
+  - pip install -r .requirements.txt
 before_script:
-- vagrant plugin install vagrant-aws
-- ssh-keygen -y -f ~/.vagrant.d/insecure_private_key > ~/.vagrant.d/insecure_private_key.pub
-- ln -s ./ JoergFiedler.freebsd-jailed-syslogd
+  - ssh-keygen -y -f ~/.vagrant.d/insecure_private_key > ~/.vagrant.d/insecure_private_key.pub
+  - ln -s ./ JoergFiedler.freebsd-jailed-syslogd
 script:
-- yamllint .
-- ansible-lint .
-- ansible-galaxy install -p ./ -r .requirements.yml
-- vagrant box add JoergFiedler/FreeBSD-12 --provider aws
-- vagrant up --provider aws
-- vagrant ssh -c 'test $(sudo /usr/local/bin/iocage exec syslogd ps xa |grep syslogd |wc -l) -eq 1'
+  - yamllint .
+  - ansible-lint .
+  - ansible-galaxy install -p ./ -r .requirements.yml
+  - vagrant box add JoergFiedler/FreeBSD-12 --provider aws
+  - vagrant up --provider aws
+  - vagrant ssh -c 'test $(sudo /usr/local/bin/iocage exec syslogd ps xa |grep syslogd |wc -l) -eq 1'
 after_script:
-- vagrant destroy -f
+  - vagrant destroy -f
 notifications:
   webhooks:
     - https://galaxy.ansible.com/api/v1/notifications/
 env:
   global:
-  - secure: fC0viq59JNX+uOHSW/t+QYgvHJRiSipim4vceFqhWUJADOSCGDboM4mn+SZ4m36j2solTo9JlfEf7fab4A2mGfcFipcwjrZs6k08o3MISnCqTmrBz9r8zRN0Pop5gRvFBEQ4e4oD5VBCVJHhyjNe5sd5p47Z1uOUVX+tG6VjTsM/7DARYmSXquJBb84ra0YxSZKSJjVlbIAimZbe1ZasekzZzgsnfbZH3PtGLSlTlOeKr6MeFkBBbcblmv+1Tjm5nOVQjwZ7Hs2RxL0oe0dritTwtg32F5Vl5HXKLtjRDBw3DfWQnC4TQzcLZLzte0OzmRbTM3H1PvLTDhiw5w8CYF7aRuMrdrSHv6889toRnChicbC0CWanFRQKdUA1nIGuUBEebFIjOx02kaxqW7Hx8aWNovsxkr7R+dnddsEcTycicZEKtcI8CjEUAU20CfRgN9Fuu3zpeVbYSccbSbH1kKl4pZGersHI9oiaMmQWyJ7c3za/ciJeZqWmlsfVLFY3tUCoxOXjJSEqXwrbtxdpgB8Cqs4dqrWH6kz6/sZONtrWjombpCxMlpR7HSF6Wxylj4i8wMA5b9z5LvOdhBJlNiQHwp17tycRZz0e17+xnQid/SqD5bFk4DnGn5F5oIJtmJ3qX0iktsW3BHCC47x3clax8sO6vdNNprAlCd0ehis=
-  - secure: e1upc/c28ZcRa8cQgG1Fr0uQR7fdTx5Esjs8QC0lI0pgEwabJzWcqd6dznlkJizLZdGD5eWKLKZk3FQXwHjTFUh6qLXBZAYCyMwfzyFr+Z/QH5FJDbMljAv1gsyHi+Je8+45Li2kJaJ8LsxsgTLU5XuZa5uP19gsmc/7gu1TbzJokDbYrz9hw2NiU7tOGPfRtchZEvoLuzoWAysxUsMf/HV2BbOy7dEjkgTLMleVppFXA1Z6qj+lUAAicy5xiIA83fJhpWjwdqSXRZDdD73iOKBDLeB+H2y6URdIaHiCuX4T1BABWlXX94i4cRX9eQi8p50YXyTwQjoKa21kgTOKp08P+LS21giJaMzR4wEcksFcFrS9HWfegoQPBn8BtcpEClhsqBO8PkJIK3GDuQWpj31f2QfqyMsCaZ05gvi88E8uPn85ZkqsbTWeEJ3zRPNsIL4sR72v39j2ceGwpdKEcCONfPlqsb+AMAzNOL1cZ0JaZ2ul1jKvOIyjeg57HMnUs5tx8Jn/Qux7xFVS3XzQc8v+bx4mJA8i32gDUrMuE5HnWRkLHlp/4h+KWReY6fqlVmYwnByRAlnlxVXztMkZ4icbddwsGxRKuwEW2rDr9cvH+xy31uIQkFzhOq6K/BS6HrHlf5tDFSiBtZBzXihRDlzRAIEz6+t3/Ws5M7MlwZA=
+    - secure: fC0viq59JNX+uOHSW/t+QYgvHJRiSipim4vceFqhWUJADOSCGDboM4mn+SZ4m36j2solTo9JlfEf7fab4A2mGfcFipcwjrZs6k08o3MISnCqTmrBz9r8zRN0Pop5gRvFBEQ4e4oD5VBCVJHhyjNe5sd5p47Z1uOUVX+tG6VjTsM/7DARYmSXquJBb84ra0YxSZKSJjVlbIAimZbe1ZasekzZzgsnfbZH3PtGLSlTlOeKr6MeFkBBbcblmv+1Tjm5nOVQjwZ7Hs2RxL0oe0dritTwtg32F5Vl5HXKLtjRDBw3DfWQnC4TQzcLZLzte0OzmRbTM3H1PvLTDhiw5w8CYF7aRuMrdrSHv6889toRnChicbC0CWanFRQKdUA1nIGuUBEebFIjOx02kaxqW7Hx8aWNovsxkr7R+dnddsEcTycicZEKtcI8CjEUAU20CfRgN9Fuu3zpeVbYSccbSbH1kKl4pZGersHI9oiaMmQWyJ7c3za/ciJeZqWmlsfVLFY3tUCoxOXjJSEqXwrbtxdpgB8Cqs4dqrWH6kz6/sZONtrWjombpCxMlpR7HSF6Wxylj4i8wMA5b9z5LvOdhBJlNiQHwp17tycRZz0e17+xnQid/SqD5bFk4DnGn5F5oIJtmJ3qX0iktsW3BHCC47x3clax8sO6vdNNprAlCd0ehis=
+    - secure: e1upc/c28ZcRa8cQgG1Fr0uQR7fdTx5Esjs8QC0lI0pgEwabJzWcqd6dznlkJizLZdGD5eWKLKZk3FQXwHjTFUh6qLXBZAYCyMwfzyFr+Z/QH5FJDbMljAv1gsyHi+Je8+45Li2kJaJ8LsxsgTLU5XuZa5uP19gsmc/7gu1TbzJokDbYrz9hw2NiU7tOGPfRtchZEvoLuzoWAysxUsMf/HV2BbOy7dEjkgTLMleVppFXA1Z6qj+lUAAicy5xiIA83fJhpWjwdqSXRZDdD73iOKBDLeB+H2y6URdIaHiCuX4T1BABWlXX94i4cRX9eQi8p50YXyTwQjoKa21kgTOKp08P+LS21giJaMzR4wEcksFcFrS9HWfegoQPBn8BtcpEClhsqBO8PkJIK3GDuQWpj31f2QfqyMsCaZ05gvi88E8uPn85ZkqsbTWeEJ3zRPNsIL4sR72v39j2ceGwpdKEcCONfPlqsb+AMAzNOL1cZ0JaZ2ul1jKvOIyjeg57HMnUs5tx8Jn/Qux7xFVS3XzQc8v+bx4mJA8i32gDUrMuE5HnWRkLHlp/4h+KWReY6fqlVmYwnByRAlnlxVXztMkZ4icbddwsGxRKuwEW2rDr9cvH+xy31uIQkFzhOq6K/BS6HrHlf5tDFSiBtZBzXihRDlzRAIEz6+t3/Ws5M7MlwZA=
