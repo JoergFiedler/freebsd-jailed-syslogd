@@ -1,7 +1,7 @@
 ---
 - name: Add syslogd flags to rc.conf
   lineinfile:
-    backup: '{{ backup_old_files }}'
+    backup: '{{ jail_backup_old_files }}'
     dest: '{{ jail_home.stdout }}/etc/rc.conf'
     state: present
     regexp: '{{ item.regexp }}'
@@ -15,7 +15,7 @@
 
 - name: Copy syslog.conf
   template:
-    backup: '{{ backup_old_files }}'
+    backup: '{{ jail_backup_old_files }}'
     src: 'syslog.conf.j2'
     dest: '{{ jail_home.stdout }}/etc/syslog.conf'
   notify:
