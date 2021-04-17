@@ -11,7 +11,7 @@
     - { regexp: '^syslogd_enable=', line: 'syslogd_enable="YES"' }
     - { regexp: '^syslogd_flags=', line: 'syslogd_flags="-n -a {{ syslogd_net }}:* -b {{ jail_net_ip }}"' }
   notify:
-    - Reload jail s syslogd
+    - Reload {{ jail_name }} syslogd
 
 - name: Copy syslog.conf
   template:
@@ -19,7 +19,7 @@
     src: 'syslog.conf.j2'
     dest: '{{ jail_home.stdout }}/etc/syslog.conf'
   notify:
-    - Reload jail s syslogd
+    - Reload {{ jail_name }} syslogd
 
 - name: Create all.log file
   copy:
